@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Input, Button } from "semantic-ui-react";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchWeather } from "../actions/index";
@@ -34,12 +36,16 @@ class SearchBarContainer extends Component {
 
     return (
       <form onSubmit={e => this.onFormSubmit(e)}>
-        <input
+        <Input
           value={term}
           onChange={e => this.handleInputChange(e)}
           type="text"
+          focus
+          placeholder="Search..."
         />
-        <button type="submit">submit</button>
+        <Button primary type="submit">
+          submit
+        </Button>
       </form>
     );
   }
