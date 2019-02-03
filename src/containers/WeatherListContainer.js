@@ -3,9 +3,22 @@ import { Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class WeatherListContainer extends Component {
+  renderWeather = cityData => {
+    const {
+      city: { id, name }
+    } = cityData;
+    return (
+      <Table.Row key={id}>
+        <Table.Cell>{name}</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+      </Table.Row>
+    );
+  };
+
   render() {
     const { weather } = this.props;
-    console.log(weather);
     return (
       <Table celled>
         <Table.Header>
@@ -18,12 +31,13 @@ class WeatherListContainer extends Component {
         </Table.Header>
 
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
+          {weather.length > 0 ? (
+            weather.map(w => this.renderWeather(w))
+          ) : (
+            <Table.Row>
+              <Table.Cell>search weather</Table.Cell>
+            </Table.Row>
+          )}
         </Table.Body>
       </Table>
     );
