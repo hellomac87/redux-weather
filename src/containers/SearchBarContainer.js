@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button, Form } from "semantic-ui-react";
+import { Container, Input, Button, Form } from "semantic-ui-react";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -35,21 +35,23 @@ class SearchBarContainer extends Component {
     const { term } = this.state;
 
     return (
-      <Form onSubmit={e => this.onFormSubmit(e)}>
-        <Form.Field>
-          <Input
-            value={term}
-            onChange={e => this.handleInputChange(e)}
-            type="text"
-            focus
-            placeholder="Search..."
-          />
-        </Form.Field>
+      <Container>
+        <Form onSubmit={e => this.onFormSubmit(e)}>
+          <Form.Field>
+            <Input
+              value={term}
+              onChange={e => this.handleInputChange(e)}
+              type="text"
+              focus
+              placeholder="Search..."
+            />
+          </Form.Field>
 
-        <Button primary type="submit">
-          submit
-        </Button>
-      </Form>
+          <Button primary type="submit">
+            submit
+          </Button>
+        </Form>
+      </Container>
     );
   }
 }
