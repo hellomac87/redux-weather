@@ -1,20 +1,40 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { connect } from "react-redux";
+import Chart from "../components/Chart";
 
 class WeatherListContainer extends Component {
   renderWeather = cityData => {
     const {
-      city: { id, name }
+      city: { id, name },
+      list
     } = cityData;
+
+    const temp = list.map(l => l.main.temp);
+    const pressure = list.map(l => l.main.pressure);
+    const humidity = list.map(l => l.main.humidity);
+
     return (
       <Table.Row key={id}>
         <Table.Cell>{name}</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>
+          <Chart data={temp} color="orange" />
+        </Table.Cell>
+        <Table.Cell>
+          <Chart data={pressure} color="red" />
+        </Table.Cell>
+        <Table.Cell>
+          <Chart data={humidity} color="powderblue" />
+        </Table.Cell>
       </Table.Row>
     );
+  };
+
+  renderTempChart = (list, option) => {
+    const arr = list.map(l => {
+      return l.main[option];
+    });
+    return arr;
   };
 
   render() {
