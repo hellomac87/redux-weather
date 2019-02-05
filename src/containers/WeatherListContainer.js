@@ -10,21 +10,21 @@ class WeatherListContainer extends Component {
       list
     } = cityData;
 
-    const temp = list.map(l => l.main.temp);
-    const pressure = list.map(l => l.main.pressure);
-    const humidity = list.map(l => l.main.humidity);
+    const temps = list.map(l => l.main.temp);
+    const pressures = list.map(l => l.main.pressure);
+    const humidities = list.map(l => l.main.humidity);
 
     return (
       <Table.Row key={id}>
         <Table.Cell>{name}</Table.Cell>
         <Table.Cell>
-          <Chart data={temp} color="orange" />
+          <Chart data={temps} units="K" color="#00ff9f" />
         </Table.Cell>
         <Table.Cell>
-          <Chart data={pressure} color="red" />
+          <Chart data={pressures} units="hPa" color="#001eff" />
         </Table.Cell>
         <Table.Cell>
-          <Chart data={humidity} color="powderblue" />
+          <Chart data={humidities} units="%" color="#d600ff" />
         </Table.Cell>
       </Table.Row>
     );
@@ -44,9 +44,9 @@ class WeatherListContainer extends Component {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>City</Table.HeaderCell>
-            <Table.HeaderCell>Temperature</Table.HeaderCell>
-            <Table.HeaderCell>Pressure</Table.HeaderCell>
-            <Table.HeaderCell>Humidity</Table.HeaderCell>
+            <Table.HeaderCell>Temperature (K)</Table.HeaderCell>
+            <Table.HeaderCell>Pressure (hPa)</Table.HeaderCell>
+            <Table.HeaderCell>Humidity (%)</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
